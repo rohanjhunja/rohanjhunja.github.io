@@ -68,10 +68,10 @@
   console.log("Page size: width=" + w + ", height=" + h);
 
   var frameHeight = ((9*w)+(36*16))/16;
+  document.getElementById("responsive-google-slides").style.marginTop = ((h-frameHeight)/2)+ "px";
   if((h+36)>=frameHeight){
   document.getElementById("frame").style.height = frameHeight+"px";
   document.getElementById("responsive-google-slides").style.height = ((9*w/16)-2)+"px";
-  document.getElementById("responsive-google-slides").style.marginTop = ((h-frameHeight)/2)+ "px";
   console.log("over frameheight+36");
 }
 else{
