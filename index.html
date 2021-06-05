@@ -6,28 +6,56 @@
 	body, html{
 		margin:0; padding:0;
 		overflow:hidden;
+    /*background-color: black;*/
 	}
-  .responsive-google-slides {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 Ratio */
+  #responsive-google-slides {
+    /*position: relative;
+    padding-bottom: 56.25%;  16:9 Ratio 
     height: 0;
+    overflow: hidden;*/
+    position: relative;
     overflow: hidden;
+    width: 100vw !important;
   }
-  .responsive-google-slides iframe {
-    border: 0;
+  #frame{
+    /*border: 0;
     position: absolute;
     top: 0;
-    left: 0;
-    /*width: 177vh !important;
-    height: 104vh !important;*/
-	width: 100vw !important;
-    	height: 59vw !important;
+    left: 0;*/
+    width: 100vw !important;
+    position:absolute;
+    top:-2px;
+    /*height: 100vh !important;*/
   }
 </style>
 
-<body>
-	<div class="responsive-google-slides">
-	<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTRkdbXiT2VmHOx5exRb1z-4pz5Ri3SFuVZ9gR7DmqlHsCfzH5nT1bvbyQ3_e5QFglk9JNu-4654UUv/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" rm="minimal"></iframe>
+<body onresize="myFunction()" onload="myFunction()">
+	<div id="responsive-google-slides">
+	<iframe id="frame" src="https://docs.google.com/presentation/d/e/2PACX-1vTRkdbXiT2VmHOx5exRb1z-4pz5Ri3SFuVZ9gR7DmqlHsCfzH5nT1bvbyQ3_e5QFglk9JNu-4654UUv/embed?start=false&loop=false&delayms=3000" frameborder="0" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" rm="none"></iframe>
 </div>
 </body>
+<script type="text/javascript">
+  function myFunction(){
+  if(window.innerWidth !== undefined && window.innerHeight !== undefined) { 
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+  } else {  
+    var w = document.documentElement.clientWidth;
+    var h = document.documentElement.clientHeight;
+  }
+  console.log("Page size: width=" + w + ", height=" + h);
+
+  var frameHeight = ((9*w)+(36*16))/16;
+  if((h+36)>=frameHeight){
+  document.getElementById("frame").style.height = frameHeight+"px";
+  document.getElementById("responsive-google-slides").style.height = ((9*w/16)-2)+"px";
+}
+else
+  document.getElementById("frame").style.height = (h+36)+"px";
+
+
+}
+
+myFunction();
+</script>
 </html>
